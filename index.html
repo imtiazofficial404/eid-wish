@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<title>Eid Mubarak</title>
+
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: sans-serif;
+    background: linear-gradient(#0f2027,#203a43,#2c5364);
+    color: white;
+    text-align: center;
+}
+
+.page1, .page2 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.page2 {
+    display: none;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+/* Moon */
+.moon {
+    width: 100px;
+    height: 100px;
+    background: gold;
+    border-radius: 50%;
+    position: relative;
+    margin: auto;
+}
+.moon::after {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: #0f2027;
+    border-radius: 50%;
+    left: 25px;
+}
+
+/* Text */
+h1 {
+    font-size: 50px;
+    color: gold;
+}
+
+/* Button */
+.btn {
+    margin-top: 20px;
+    padding: 10px 25px;
+    border-radius: 25px;
+    border: none;
+    background: gold;
+    cursor: pointer;
+}
+
+/* Footer */
+.footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
+
+/* Stars */
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    from {transform: translateY(-100px);}
+    to {transform: translateY(100vh);}
+}
+</style>
+
+</head>
+
+<body>
+
+<audio id="music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"></audio>
+
+<!-- PAGE 1 -->
+<div class="page1" id="p1">
+    <div class="center">
+        <div class="moon"></div>
+        <h1>🌙 Eid Mubarak 🌙</h1>
+        <button class="btn" onclick="nextPage()">Click</button>
+    </div>
+    <div class="footer">Developed by Imtiaz Ahmed</div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page2" id="p2">
+    <div class="center">
+        <h1>🎉 ঈদের শুভেচ্ছা 🎉</h1>
+    </div>
+    <div class="footer">Developed by Imtiaz Ahmed</div>
+</div>
+
+<script>
+function nextPage(){
+    document.getElementById("p1").style.display="none";
+    document.getElementById("p2").style.display="block";
+
+    document.getElementById("music").play();
+}
+
+/* Stars */
+function createStar(){
+    let s = document.createElement("div");
+    s.className = "star";
+    s.style.left = Math.random()*window.innerWidth+"px";
+    s.style.animationDuration = (2+Math.random()*3)+"s";
+    document.body.appendChild(s);
+
+    setTimeout(()=>s.remove(),5000);
+}
+setInterval(createStar,100);
+</script>
+
+</body>
+</html>
